@@ -1,21 +1,28 @@
 import { gsap } from "gsap";
 
-console.log("hello class");
+function redAnimation(){
+    var tl = gsap.timeline();
+    tl.to("#red-circle",{duration:1, y:300})
+    .to("#red-circle",{duration:1, scaleX:"70%"});
+    return tl;
+}
 
-gsap.set(".aqua-box",{transformOrigin:"20% 10%"});
+function aquaAnimation(){
+    var tl = gsap.timeline();
+    tl.to("#aqua-box",{duration:1, x:"100%"})
+        .to("#aqua-box",{duration:1, y:"100%"})
+        .to("#aqua-box",{duration:1, scale:1.5});
+    return tl;
+}
 
-let one = 0.25;
-let halfOfOne = 0.5;
+function yellowAnimation(){
+    var tl = gsap.timeline();
+    tl.to("#yellow-rect",{duration:1, x:"200%"})
+        .to("#yellow-rect",{duration:1, scaleY:"50%"});
+    return tl;
+}
 
-// access gsap | what do you want to animate?
-gsap.to(".aqua-box",{duration:one, rotation:360,backgroundColor:"#fff", scaleX:one, stagger:halfOfOne });
-
-
-
-// let box = document.querySelector("#aqua-box");
-
-// box.addEventListener("click",function(){
-//     // gsap.to("#aqua-box",{duration:1,x: 100 });
-//     // gsap.to("#aqua-box",{duration:1,x: "+=100" });
-// })
-
+var mainTL = gsap.timeline();
+mainTL.add(redAnimation())
+    .add(aquaAnimation())
+    .add(yellowAnimation(),"-=2.5");
